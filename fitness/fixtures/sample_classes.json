@@ -1,0 +1,35 @@
+[
+  {
+    "model": "fitness.fitnessclass",
+    "pk": 1,
+    "fields": {
+      "name": "Yoga",
+      "instructor": "Alice",
+      "start_time": "2025-06-15T06:30:00+05:30",
+      "total_slots": 10,
+      "available_slots": 10
+    }
+  },
+  {
+    "model": "fitness.fitnessclass",
+    "pk": 2,
+    "fields": {
+      "name": "Zumba",
+      "instructor": "Bob",
+      "start_time": "2025-06-15T08:00:00+05:30",
+      "total_slots": 15,
+      "available_slots": 15
+    }
+  },
+  {
+    "model": "fitness.fitnessclass",
+    "pk": 3,
+    "fields": {
+      "name": "HIIT",
+      "instructor": "Charlie",
+      "start_time": "2025-06-15T10:00:00+05:30",
+      "total_slots": 8,
+      "available_slots": 8
+    }
+  }
+]
