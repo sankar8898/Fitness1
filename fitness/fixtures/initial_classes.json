@@ -5,7 +5,7 @@
     "fields": {
       "name": "Yoga",
       "instructor": "Alice",
-      "start_time": "2025-06-15T06:30:00+05:30",
+      "start_time": "2025-06-22T06:30:00+05:30",
       "total_slots": 10,
       "available_slots": 10
     }
@@ -16,7 +16,7 @@
     "fields": {
       "name": "Zumba",
       "instructor": "Bob",
-      "start_time": "2025-06-15T08:00:00+05:30",
+      "start_time": "2025-06-22T08:00:00+05:30",
       "total_slots": 15,
       "available_slots": 15
     }
@@ -27,7 +27,7 @@
     "fields": {
       "name": "HIIT",
       "instructor": "Charlie",
-      "start_time": "2025-06-15T10:00:00+05:30",
+      "start_time": "2025-06-22T10:00:00+05:30",
       "total_slots": 8,
       "available_slots": 8
     }

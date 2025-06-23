@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.test import TestCase
 
 # Create your tests here.
@@ -9,14 +11,18 @@ import pytz
 from django.utils import timezone
 
 class BookingAPITestCase(TestCase):
+    from datetime import timedelta
+    fixtures = ['initial_classes']
 
     def setUp(self):
-        # Create a future IST datetime, then convert to UTC for storage
         ist = pytz.timezone('Asia/Kolkata')
-        # June 20, 2025 at 09:00 IST
-        naive_ist = timezone.datetime(2025, 6, 20, 9, 0, 0)
-        dt_ist = ist.localize(naive_ist)
-        # Create FitnessClass1
+
+        # Dynamic future datetime: 1 day from now
+        future_utc = timezone.now() + timedelta(days=1)
+        dt_ist = future_utc.astimezone(ist).replace(tzinfo=None)
+        dt_ist = ist.localize(dt_ist)
+
+        # FitnessClass 1
         self.cls1 = FitnessClass.objects.create(
             name='Yoga',
             instructor='Alice',
@@ -24,9 +30,10 @@ class BookingAPITestCase(TestCase):
             total_slots=5,
             available_slots=5
         )
-        # Create FitnessClass2 with zero slots
-        naive_ist2 = timezone.datetime(2025, 6, 20, 11, 0, 0)
-        dt_ist2 = ist.localize(naive_ist2)
+
+        # FitnessClass 2 - 2 hours later, no slots
+        dt_ist2 = dt_ist + timedelta(hours=2)
+
         self.cls2 = FitnessClass.objects.create(
             name='Zumba',
             instructor='Bob',
@@ -40,7 +47,7 @@ class BookingAPITestCase(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.json()
-        self.assertEqual(len(data), 2)
+        self.assertEqual(len(data), 5)
         # Since no ?tz= provided, scheduled_time ends with +05:30
         self.assertTrue(data[0]['scheduled_time'].endswith('+05:30'))
 
